@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Fragrance — Mahr Fragrances</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/components.css">
+<style>
+  .pdp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: flex-start; }
+  @media (max-width: 900px) { .pdp-grid { grid-template-columns: 1fr; gap: 30px; } }
+
+  .pdp-gallery__main { aspect-ratio: 4/5; border-radius: var(--radius); overflow: hidden; position: relative; }
+  .pdp-gallery__thumbs { display: flex; gap: 10px; margin-top: 14px; }
+  .pdp-gallery__thumb { width: 76px; aspect-ratio: 4/5; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); cursor: pointer; opacity: 0.65; transition: opacity var(--transition), border-color var(--transition); }
+  .pdp-gallery__thumb.active { opacity: 1; border-color: var(--gold); }
+
+  .pdp-info { position: sticky; top: 110px; }
+  .pdp-info__brand { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+  .pdp-info h1 { font-size: 40px; }
+  .pdp-info__tagline { color: var(--grey); font-size: 15px; margin-top: 6px; font-style: italic; }
+  .pdp-info__rating { margin: 14px 0; }
+  .pdp-info__price { font-family: var(--font-heading); font-size: 30px; color: var(--navy); margin: 10px 0 22px; }
+  .pdp-info__price span.old { text-decoration: line-through; color: var(--grey); font-size: 18px; margin-left: 10px; }
+
+  .size-selector { display: flex; gap: 10px; margin-bottom: 26px; }
+  .size-btn { border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 18px; font-size: 14px; text-align: center; flex: 1; transition: all var(--transition); }
+  .size-btn.active { border-color: var(--navy); background: var(--navy); color: #fff; }
+  .size-btn small { display: block; color: var(--grey); font-size: 11px; margin-top: 2px; }
+  .size-btn.active small { color: rgba(255,255,255,0.7); }
+
+  .pdp-cta { display: flex; gap: 12px; margin-bottom: 10px; }
+  .qty-select { display: flex; align-items: center; border: 1px solid var(--border); border-radius: var(--radius); }
+  .qty-select button { width: 44px; height: 52px; font-size: 16px; }
+  .qty-select span { width: 30px; text-align: center; font-size: 14px; }
+
+  .performance-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 10px; }
+  .perf-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+  .perf-card .label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 6px; }
+  .perf-card .value { font-family: var(--font-heading); font-size: 18px; color: var(--navy); }
+
+  .pdp-tabs-nav { display: flex; gap: 30px; border-bottom: 1px solid var(--border); margin-bottom: 40px; overflow-x: auto; }
+  .pdp-tab-btn { padding: 14px 0; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--grey); border-bottom: 2px solid transparent; white-space: nowrap; }
+  .pdp-tab-btn.active { color: var(--navy); border-color: var(--gold); font-weight: 600; }
+
+  .notes-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  @media (max-width: 700px) { .notes-columns { grid-template-columns: 1fr; gap: 24px; } }
+  .notes-columns .col { text-align: center; padding: 24px; border: 1px solid var(--border); border-radius: var(--radius); }
+  .notes-columns .col h5 { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .notes-columns .col h4 { margin-bottom: 14px; }
+
+  .story-block { background: var(--navy); color: #fff; padding: 60px; border-radius: 6px; }
+  .story-block h3 { color: #fff; margin-bottom: 18px; }
+  .story-block p { color: rgba(255,255,255,0.72); font-size: 16px; line-height: 1.8; }
+  @media (max-width: 700px) { .story-block { padding: 34px 24px; } }
+
+  .faq-item { border-bottom: 1px solid var(--border); padding: 18px 0; }
+  .faq-q { display: flex; justify-content: space-between; cursor: pointer; font-family: var(--font-heading); font-size: 18px; }
+  .faq-a { color: var(--grey); font-size: 14px; margin-top: 10px; display: none; line-height: 1.7; }
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .faq-q svg { transform: rotate(45deg); }
+  .faq-q svg { transition: transform var(--transition); }
+
+  .sticky-cta {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 150;
+    background: #fff; border-top: 1px solid var(--border);
+    padding: 14px 20px; display: none;
+    align-items: center; justify-content: space-between; gap: 14px;
+    box-shadow: 0 -6px 20px rgba(0,0,0,0.06);
+  }
+  .sticky-cta__info { font-size: 13px; }
+  .sticky-cta__info strong { display: block; font-family: var(--font-heading); font-size: 15px; }
+  @media (max-width: 900px) { .sticky-cta.show { display: flex; } body { padding-bottom: 76px; } }
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section style="padding-top:40px;">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><a href="shop.html">Shop</a><span>/</span><span id="breadcrumb-name">Fragrance</span></div>
+    <div class="pdp-grid" id="pdp-root"><!-- injected --></div>
+  </div>
+</section>
+
+<section id="tabs-section">
+  <div class="container">
+    <div class="pdp-tabs-nav">
+      <button class="pdp-tab-btn active" data-tab="profile" onclick="switchTab('profile')">Fragrance Profile</button>
+      <button class="pdp-tab-btn" data-tab="performance" onclick="switchTab('performance')">Performance</button>
+      <button class="pdp-tab-btn" data-tab="story" onclick="switchTab('story')">Story</button>
+      <button class="pdp-tab-btn" data-tab="faq" onclick="switchTab('faq')">FAQ</button>
+    </div>
+
+    <div class="pdp-tab-panel" data-panel="profile">
+      <div class="notes-columns" id="notes-columns"></div>
+    </div>
+
+    <div class="pdp-tab-panel" data-panel="performance" style="display:none">
+      <div class="performance-cards" id="performance-detail" style="grid-template-columns:repeat(4,1fr); max-width:900px; margin:0 auto;"></div>
+      <div class="text-center mt-l" style="margin-top:30px;">
+        <p id="occasion-season-text" style="color:var(--grey)"></p>
+      </div>
+    </div>
+
+    <div class="pdp-tab-panel" data-panel="story" style="display:none">
+      <div class="story-block">
+        <div class="eyebrow eyebrow--light">The Story</div>
+        <h3 id="story-title"></h3>
+        <p id="story-text"></p>
+        <div class="divider-gold--left" style="background:var(--gold); width:56px; height:1px; margin:26px 0;"></div>
+        <p class="small-text" style="color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.08em;">Inspiration</p>
+        <p id="inspiration-text" style="margin-top:8px;"></p>
+        <p class="small-text" style="color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.08em; margin-top:24px;">Craftsmanship</p>
+        <p id="craft-text" style="margin-top:8px;"></p>
+      </div>
+    </div>
+
+    <div class="pdp-tab-panel" data-panel="faq" style="display:none">
+      <div style="max-width:700px; margin:0 auto;" id="faq-list"></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--ivory)">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">You May Also Like</div>
+      <h2>Related Fragrances</h2>
+    </div>
+    <div class="product-grid" id="related-grid"></div>
+  </div>
+</section>
+
+<div class="sticky-cta" id="sticky-cta">
+  <div class="sticky-cta__info">
+    <strong id="sticky-name"></strong>
+    <span id="sticky-price"></span>
+  </div>
+  <button class="btn btn-primary" onclick="addToCartFromPage()">Add To Cart</button>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="js/products.js"></script>
+<script src="js/app.js"></script>
+<script>
+  const id = new URLSearchParams(location.search).get("id") || MAHR_PRODUCTS[0].id;
+  const p = MAHR.getProduct(id) || MAHR_PRODUCTS[0];
+  let selectedSize = Object.keys(p.price)[0];
+
+  document.getElementById("page-title").textContent = p.name + " — Mahr Fragrances";
+  document.getElementById("breadcrumb-name").textContent = p.name;
+
+  const galleryViews = [
+    { label: "Bottle", svg: MAHR.bottleSVG(p.colorway, p.name) },
+    { label: "Notes", svg: MAHR.bottleSVG(p.colorway, p.name, "TOP · MID · BASE") },
+    { label: "Detail", svg: MAHR.bottleSVG(p.colorway, p.name.split(" ")[0]) },
+  ];
+
+  function pdpHTML() {
+    return `
+      <div class="pdp-gallery reveal">
+        <div class="pdp-gallery__main bottle-art" id="gallery-main">${galleryViews[0].svg}</div>
+        <div class="pdp-gallery__thumbs">
+          ${galleryViews.map((v,i) => `<div class="pdp-gallery__thumb bottle-art ${i===0?'active':''}" onclick="setGallery(${i})">${v.svg}</div>`).join("")}
+        </div>
+      </div>
+      <div class="pdp-info reveal">
+        <div class="pdp-info__brand">MAHR FRAGRANCES · ${p.familyLabel}</div>
+        <h1>${p.name}</h1>
+        <p class="pdp-info__tagline">${p.tagline}</p>
+        <div class="pdp-info__rating rating"><span class="stars">${MAHR.starString(p.rating)}</span><span class="count">${p.rating} · ${p.reviewCount} reviews</span></div>
+        <div class="pdp-info__price" id="pdp-price">${MAHR.money(p.price[selectedSize])}</div>
+
+        <div class="small-text" style="text-transform:uppercase; letter-spacing:0.08em; color:var(--grey); margin-bottom:10px;">Choose Size</div>
+        <div class="size-selector" id="size-selector">
+          ${Object.keys(p.price).map(size => `
+            <button class="size-btn ${size===selectedSize?'active':''}" onclick="selectSize('${size}')">
+              ${size}<small>${MAHR.money(p.price[size])}</small>
+            </button>`).join("")}
+        </div>
+
+        <div class="pdp-cta">
+          <div class="qty-select" id="qty-select">
+            <button onclick="changeQty(-1)">−</button><span id="qty-val">1</span><button onclick="changeQty(1)">+</button>
+          </div>
+          <button class="btn btn-primary btn-block" onclick="addToCartFromPage()">Add To Cart</button>
+        </div>
+        <button class="btn btn-secondary btn-block" onclick="MAHR.showToast('This is a mock store — buy now is not connected yet')">Buy Now</button>
+
+        <div class="trust-row" style="margin-top:30px; grid-template-columns:repeat(2,1fr);">
+          <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5z"/></svg>Premium Quality</div>
+          <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Secure Payment</div>
+          <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="6" width="15" height="12" rx="1"/><path d="M16 10h4l3 3v5h-7z"/><circle cx="6" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/></svg>Pan India Delivery</div>
+          <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.5 8.5 0 11-8.5-8.5A8.5 8.5 0 0121 11.5z"/><path d="M8 12l2.5 2.5L16 9"/></svg>Customer Support</div>
+        </div>
+
+        <div style="margin-top:24px; display:flex; flex-wrap:wrap; gap:8px;">
+          ${p.badges.map(b => `<span class="badge ${b==='Signature'?'gold':''}">${b}</span>`).join("")}
+        </div>
+      </div>
+    `;
+  }
+
+  function setGallery(i) {
+    document.getElementById("gallery-main").innerHTML = galleryViews[i].svg;
+    document.querySelectorAll(".pdp-gallery__thumb").forEach((el, idx) => el.classList.toggle("active", idx === i));
+  }
+
+  function selectSize(size) {
+    selectedSize = size;
+    document.querySelectorAll(".size-btn").forEach(b => b.classList.remove("active"));
+    document.getElementById("pdp-price").textContent = MAHR.money(p.price[size]);
+    [...document.querySelectorAll(".size-btn")].find(b => b.textContent.trim().startsWith(size)).classList.add("active");
+    updateSticky();
+  }
+
+  let qty = 1;
+  function changeQty(delta) {
+    qty = Math.max(1, qty + delta);
+    document.getElementById("qty-val").textContent = qty;
+  }
+
+  function addToCartFromPage() {
+    MAHR.addToCart(p.id, selectedSize, qty);
+  }
+
+  function switchTab(tab) {
+    document.querySelectorAll(".pdp-tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+    document.querySelectorAll(".pdp-tab-panel").forEach(pnl => pnl.style.display = pnl.dataset.panel === tab ? "block" : "none");
+  }
+
+  function updateSticky() {
+    document.getElementById("sticky-name").textContent = p.name;
+    document.getElementById("sticky-price").textContent = MAHR.money(p.price[selectedSize]) + " · " + selectedSize;
+  }
+
+  // Render
+  document.getElementById("pdp-root").innerHTML = pdpHTML();
+  updateSticky();
+
+  document.getElementById("notes-columns").innerHTML = `
+    <div class="col"><h5>Top Notes</h5><h4>First Impression</h4><div class="note-tags">${p.notes.top.map(n=>`<span class="note-tag">${n}</span>`).join("")}</div></div>
+    <div class="col"><h5>Middle Notes</h5><h4>Heart Of The Fragrance</h4><div class="note-tags">${p.notes.middle.map(n=>`<span class="note-tag">${n}</span>`).join("")}</div></div>
+    <div class="col"><h5>Base Notes</h5><h4>The Lasting Memory</h4><div class="note-tags">${p.notes.base.map(n=>`<span class="note-tag">${n}</span>`).join("")}</div></div>
+  `;
+
+  document.getElementById("performance-detail").innerHTML = `
+    <div class="perf-card"><div class="label">Longevity</div><div class="value">${p.performance.longevity}</div></div>
+    <div class="perf-card"><div class="label">Projection</div><div class="value">${p.performance.projection}</div></div>
+    <div class="perf-card"><div class="label">Sillage</div><div class="value">${p.performance.sillage}</div></div>
+    <div class="perf-card"><div class="label">Best Time</div><div class="value">${p.performance.bestTime}</div></div>
+  `;
+  document.getElementById("occasion-season-text").innerHTML = `<strong>Best Worn For:</strong> ${p.occasion.join(", ")} &nbsp;·&nbsp; <strong>Ideal Season:</strong> ${p.season.join(", ")}`;
+
+  document.getElementById("story-title").textContent = p.name + " — " + p.tagline;
+  document.getElementById("story-text").textContent = p.story;
+  document.getElementById("inspiration-text").textContent = p.inspiration;
+  document.getElementById("craft-text").textContent = p.craftsmanship;
+
+  const faqs = [
+    { q: "How long does it last?", a: `${p.name} has a longevity of ${p.performance.longevity.toLowerCase()} with ${p.performance.projection.toLowerCase()} projection.` },
+    { q: "Is it suitable for daily wear?", a: p.occasion.includes("Daily Wear") ? "Yes — this fragrance is designed for comfortable, everyday wear." : "This fragrance is best suited for evenings and special occasions rather than daily wear." },
+    { q: "Which size should I choose?", a: "30ml is great for travel or trying a new scent, 50ml suits regular use, and 100ml offers the best value for a signature fragrance." },
+    { q: "Do you offer returns?", a: "Yes, unopened products can be returned within 7 days of delivery. See our Shipping & Returns page for details." }
+  ];
+  document.getElementById("faq-list").innerHTML = faqs.map((f,i) => `
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">${f.q}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a">${f.a}</div>
+    </div>
+  `).join("");
+
+  // Related products: same family or shares a collection tag
+  const related = MAHR_PRODUCTS.filter(x => x.id !== p.id && (x.family === p.family || x.collectionTags.some(t => p.collectionTags.includes(t)))).slice(0, 4);
+  const fallbackRelated = related.length ? related : MAHR_PRODUCTS.filter(x => x.id !== p.id).slice(0, 4);
+  document.getElementById("related-grid").innerHTML = fallbackRelated.map(MAHR.productCardHTML).join("");
+
+  MAHR.initLayout('shop');
+  MAHR.initReveal();
+
+  window.addEventListener("scroll", () => {
+    const trigger = document.getElementById("pdp-root").offsetTop + document.getElementById("pdp-root").offsetHeight;
+    document.getElementById("sticky-cta").classList.toggle("show", window.scrollY > trigger);
+  });
+</script>
+</body>
+</html>

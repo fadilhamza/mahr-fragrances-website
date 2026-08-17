@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fragrance Finder — Mahr Fragrances</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/components.css">
+<style>
+  .finder-hero { text-align: center; padding: 70px 0 40px; }
+  .finder-wrap { max-width: 780px; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="finder-hero">
+  <div class="container">
+    <div class="eyebrow">Fragrance Finder</div>
+    <h1>Find Your Scent</h1>
+    <p style="color:var(--grey); max-width:480px; margin:14px auto 0;">Three quick questions. We'll recommend fragrances suited to your mood, occasion and intensity.</p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container finder-wrap">
+    <div class="finder-card">
+      <div class="finder-progress">
+        <div class="finder-progress__bar"><span id="bar1"></span></div>
+        <div class="finder-progress__bar"><span id="bar2"></span></div>
+        <div class="finder-progress__bar"><span id="bar3"></span></div>
+      </div>
+
+      <!-- Step 1: Mood -->
+      <div class="finder-step active" data-step="1">
+        <div class="eyebrow eyebrow--light">Question 1 of 3</div>
+        <h2 style="color:#fff;">What mood are you drawn to?</h2>
+        <div class="finder-options">
+          <button class="finder-option" onclick="selectAnswer('mood','Fresh', this)"><strong>Fresh</strong><span>Clean, energetic, refreshing</span></button>
+          <button class="finder-option" onclick="selectAnswer('mood','Elegant', this)"><strong>Elegant</strong><span>Sophisticated and premium</span></button>
+          <button class="finder-option" onclick="selectAnswer('mood','Bold', this)"><strong>Bold</strong><span>Strong projection and presence</span></button>
+          <button class="finder-option" onclick="selectAnswer('mood','Warm', this)"><strong>Warm</strong><span>Amber, spice and comfort</span></button>
+        </div>
+        <div class="finder-nav"><span></span><button class="btn btn-gold" onclick="nextStep(1)" id="next1" disabled>Continue</button></div>
+      </div>
+
+      <!-- Step 2: Occasion -->
+      <div class="finder-step" data-step="2">
+        <div class="eyebrow eyebrow--light">Question 2 of 3</div>
+        <h2 style="color:#fff;">When will you wear it most?</h2>
+        <div class="finder-options">
+          <button class="finder-option" onclick="selectAnswer('occasion','Daily', this)"><strong>Daily</strong><span>Everyday wear</span></button>
+          <button class="finder-option" onclick="selectAnswer('occasion','Office', this)"><strong>Office</strong><span>Clean, professional</span></button>
+          <button class="finder-option" onclick="selectAnswer('occasion','Date', this)"><strong>Date Night</strong><span>Warm and attractive</span></button>
+          <button class="finder-option" onclick="selectAnswer('occasion','Events', this)"><strong>Events</strong><span>Weddings, parties, evenings</span></button>
+        </div>
+        <div class="finder-nav"><button class="btn btn-secondary" onclick="prevStep(2)">Back</button><button class="btn btn-gold" onclick="nextStep(2)" id="next2" disabled>Continue</button></div>
+      </div>
+
+      <!-- Step 3: Intensity -->
+      <div class="finder-step" data-step="3">
+        <div class="eyebrow eyebrow--light">Question 3 of 3</div>
+        <h2 style="color:#fff;">How strong should it feel?</h2>
+        <div class="finder-options">
+          <button class="finder-option" onclick="selectAnswer('intensity','Soft', this)"><strong>Soft</strong><span>Close to skin, subtle</span></button>
+          <button class="finder-option" onclick="selectAnswer('intensity','Medium', this)"><strong>Medium</strong><span>Noticeable, balanced</span></button>
+          <button class="finder-option" onclick="selectAnswer('intensity','Strong', this)"><strong>Strong</strong><span>Bold, long-lasting trail</span></button>
+        </div>
+        <div class="finder-nav"><button class="btn btn-secondary" onclick="prevStep(3)">Back</button><button class="btn btn-gold" onclick="showResults()" id="next3" disabled>See My Fragrances</button></div>
+      </div>
+
+      <!-- Results -->
+      <div class="finder-step" data-step="results">
+        <div class="eyebrow eyebrow--light">Your Matches</div>
+        <h2 style="color:#fff;" id="results-heading">Fragrances For You</h2>
+        <p style="color:rgba(255,255,255,0.6);" id="results-sub"></p>
+        <div class="finder-results-grid" id="results-grid"></div>
+        <div class="finder-nav" style="justify-content:center;">
+          <button class="btn btn-ghost-light" onclick="restartFinder()">Start Over</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/products.js"></script>
+<script src="js/app.js"></script>
+<script>
+  const answers = { mood: null, occasion: null, intensity: null };
+
+  function selectAnswer(key, value, el) {
+    answers[key] = value;
+    el.parentElement.querySelectorAll(".finder-option").forEach(o => o.classList.remove("selected"));
+    el.classList.add("selected");
+    const stepNum = key === "mood" ? 1 : key === "occasion" ? 2 : 3;
+    document.getElementById("next" + stepNum).disabled = false;
+  }
+
+  function goToStep(step) {
+    document.querySelectorAll(".finder-step").forEach(s => s.classList.remove("active"));
+    document.querySelector(`.finder-step[data-step="${step}"]`).classList.add("active");
+    document.getElementById("bar1").style.width = step >= 1 && step !== 1 ? "100%" : (step === 1 ? "0%" : "100%");
+    document.getElementById("bar1").style.width = (typeof step === "number" && step >= 1) ? "100%" : "0%";
+    document.getElementById("bar2").style.width = (typeof step === "number" && step >= 2) || step === "results" ? "100%" : "0%";
+    document.getElementById("bar3").style.width = (typeof step === "number" && step >= 3) || step === "results" ? "100%" : "0%";
+  }
+
+  function nextStep(current) { goToStep(current + 1); }
+  function prevStep(current) { goToStep(current - 1); }
+
+  function restartFinder() {
+    answers.mood = null; answers.occasion = null; answers.intensity = null;
+    document.querySelectorAll(".finder-option").forEach(o => o.classList.remove("selected"));
+    document.getElementById("next1").disabled = true;
+    document.getElementById("next2").disabled = true;
+    document.getElementById("next3").disabled = true;
+    goToStep(1);
+  }
+
+  const moodMap = { Fresh: ["fresh","aquatic"], Elegant: ["floral","musk"], Bold: ["oud","woody-oriental"], Warm: ["oriental","gourmand"] };
+  const occasionMap = { Daily: "Daily Wear", Office: "Office", Date: "Date Night", Events: "Special Events" };
+  const intensityMap = { Soft: ["Soft","Close"], Medium: ["Moderate","Noticeable"], Strong: ["Strong","Very Strong"] };
+
+  function showResults() {
+    goToStep("results");
+    const families = moodMap[answers.mood] || [];
+    const occasionWord = occasionMap[answers.occasion];
+    const intensityWords = intensityMap[answers.intensity] || [];
+
+    let scored = MAHR_PRODUCTS.map(p => {
+      let score = 0;
+      if (families.includes(p.family)) score += 3;
+      if (p.occasion.includes(occasionWord)) score += 2;
+      if (intensityWords.includes(p.performance.projection)) score += 2;
+      if (p.mood && answers.mood && p.mood.toLowerCase().includes(answers.mood.toLowerCase())) score += 1;
+      return { p, score };
+    }).sort((a,b) => b.score - a.score);
+
+    let top = scored.filter(s => s.score > 0).slice(0, 3).map(s => s.p);
+    if (top.length < 3) {
+      const extra = MAHR_PRODUCTS.filter(p => !top.includes(p) && p.isBestseller);
+      top = [...top, ...extra].slice(0, 3);
+    }
+
+    document.getElementById("results-sub").textContent = `Based on ${answers.mood}, ${occasionMap[answers.occasion]} wear, ${answers.intensity} intensity`;
+    document.getElementById("results-grid").innerHTML = top.map(p => `
+      <a href="product.html?id=${p.id}" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.15); border-radius:6px; padding:20px; display:block; text-align:center;">
+        <div style="width:70px; margin:0 auto 14px;">${MAHR.bottleSVG(p.colorway, p.name)}</div>
+        <div style="color:var(--gold-light); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px;">${p.familyLabel}</div>
+        <div style="color:#fff; font-family:var(--font-heading); font-size:18px;">${p.name}</div>
+        <div style="color:rgba(255,255,255,0.5); font-size:13px; margin-top:6px;">From ${MAHR.money(Math.min(...Object.values(p.price)))}</div>
+      </a>
+    `).join("");
+  }
+
+  MAHR.initLayout('finder');
+</script>
+</body>
+</html>

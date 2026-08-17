@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahr Fragrances — Premium Fragrances. Timeless Impressions.</title>
+<meta name="description" content="Discover Mahr Fragrances — premium, accessible-luxury fragrances inspired by timeless scent profiles. Crafted for India.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/components.css">
+<style>
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(120deg, var(--navy) 0%, var(--navy-soft) 60%, #142b40 100%);
+    overflow: hidden;
+    padding-top: 0;
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+  }
+  .hero__copy { position: relative; z-index: 2; color: #fff; }
+  .hero__copy h1 { color: #fff; font-size: 68px; }
+  .hero__copy h1 em { color: var(--gold-light); font-style: normal; }
+  .hero__copy p.lead { color: rgba(255,255,255,0.72); font-size: 18px; max-width: 460px; margin-top: 20px; }
+  .hero__cta { display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap; }
+  .hero__img-wrap {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    animation: floatY 6s ease-in-out infinite;
+  }
+  .hero__img-wrap img { border-radius: 6px; box-shadow: 0 40px 80px rgba(0,0,0,0.4); }
+  @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+  .hero__marble { position: absolute; width: 480px; height: 480px; background: radial-gradient(circle, rgba(201,164,92,0.18), transparent 70%); border-radius: 50%; z-index: 1; }
+  @media (max-width: 900px) {
+    .hero { padding-top: 40px; padding-bottom: 40px; min-height: auto; }
+    .hero__grid { grid-template-columns: 1fr; text-align: center; }
+    .hero__copy h1 { font-size: 42px; }
+    .hero__copy p.lead { margin-left: auto; margin-right: auto; }
+    .hero__cta { justify-content: center; }
+  }
+
+  .philosophy { background: var(--navy); color: #fff; text-align: center; }
+  .philosophy h2 { color: #fff; max-width: 720px; margin: 0 auto; }
+  .philosophy p.lead { color: rgba(255,255,255,0.65); max-width: 560px; margin: 20px auto 0; font-size: 17px; }
+  .divider-gold-light { width: 56px; height: 1px; background: var(--gold); margin: 26px auto; }
+
+  .lifestyle-section { position: relative; }
+  .lifestyle-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+  .lifestyle-tile { aspect-ratio: 3/4; position: relative; overflow: hidden; display: flex; align-items: flex-end; }
+  .lifestyle-tile::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 50%, rgba(7,21,37,0.7)); }
+  .lifestyle-tile span { position: relative; z-index: 2; color: #fff; padding: 18px; font-family: var(--font-heading); font-size: 18px; }
+  @media (max-width: 768px) { .lifestyle-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .gift-section { background: var(--ivory); }
+  .gift-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+  @media (max-width: 900px) { .gift-grid { grid-template-columns: 1fr; } .gift-grid > div:first-child { order: 2; } }
+  .gift-visual { background: var(--navy); border-radius: 6px; padding: 60px 40px; display: flex; align-items: center; justify-content: center; gap: 20px; }
+  .gift-visual svg { width: 30%; }
+
+  .newsletter-section { background: var(--navy); color: #fff; text-align: center; }
+  .newsletter-section h2 { color: #fff; }
+  .newsletter-form { display: flex; max-width: 440px; margin: 32px auto 0; border: 1px solid rgba(255,255,255,0.3); border-radius: var(--radius); overflow: hidden; }
+  .newsletter-form input { flex: 1; background: transparent; border: none; padding: 0 18px; color: #fff; outline: none; }
+  .newsletter-form input::placeholder { color: rgba(255,255,255,0.4); }
+  .newsletter-form button { padding: 0 28px; background: var(--gold); color: var(--navy); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero__marble" style="top:-100px; left:-100px;"></div>
+  <div class="container hero__grid">
+    <div class="hero__copy reveal">
+      <div class="eyebrow eyebrow--light">Accessible Premium Fragrance</div>
+      <h1>Premium Fragrances.<br><em>Timeless Impressions.</em></h1>
+      <p class="lead">Explore thoughtfully crafted fragrances inspired by timeless scent profiles — made for the moments and memories that matter.</p>
+      <div class="hero__cta">
+        <a href="shop.html" class="btn btn-gold">Explore Collection</a>
+        <a href="finder.html" class="btn btn-ghost-light">Discover Your Scent</a>
+      </div>
+    </div>
+    <div class="hero__img-wrap reveal">
+      <img src="assets/bottle-reference.png" alt="Mahr Fragrances bottle collection" style="width:100%; max-width:560px;">
+    </div>
+  </div>
+</section>
+
+<!-- ===== BRAND PHILOSOPHY ===== -->
+<section class="philosophy">
+  <div class="container">
+    <div class="eyebrow eyebrow--light reveal">More Than A Fragrance</div>
+    <h2 class="reveal">A scent carries memories, emotions, and moments — Mahr (مهر) means warmth, affection, and connection.</h2>
+    <div class="divider-gold-light reveal"></div>
+    <p class="lead reveal">Every Mahr fragrance is composed to sit between mass-market perfume and expensive luxury imports — premium craftsmanship, elegant experience, without the imported price tag.</p>
+  </div>
+</section>
+
+<!-- ===== SHOP BY COLLECTION ===== -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Shop By Collection</div>
+      <h2>Find Your Signature</h2>
+      <p>Four ways into the Mahr world — shop by who it's for, or discover Arabic-inspired oud luxury.</p>
+    </div>
+    <div class="collection-grid" id="collection-grid"></div>
+  </div>
+</section>
+
+<!-- ===== FEATURED FRAGRANCES ===== -->
+<section style="background:var(--ivory)">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Best Sellers</div>
+      <h2>Featured Fragrances</h2>
+      <p>The scents the Mahr circle keeps coming back to.</p>
+    </div>
+    <div class="product-grid" id="featured-grid"></div>
+    <div class="text-center mt-l" style="margin-top:50px">
+      <a href="shop.html" class="btn btn-secondary">View All Fragrances</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FRAGRANCE DISCOVERY / FINDER TEASER ===== -->
+<section style="background:var(--navy); color:#fff;">
+  <div class="container" style="display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;">
+    <div class="reveal">
+      <div class="eyebrow eyebrow--light">Not Sure What Suits You?</div>
+      <h2 style="color:#fff">Find Your Scent in 30 Seconds</h2>
+      <p style="color:rgba(255,255,255,0.65); margin-top:16px; max-width:440px;">Answer three quick questions about mood, occasion and intensity — we'll recommend fragrances built for you.</p>
+      <a href="finder.html" class="btn btn-gold mt-l" style="margin-top:32px;">Start the Fragrance Finder</a>
+    </div>
+    <div class="chip-row reveal" style="justify-content:center;">
+      <span class="chip" style="border-color:rgba(255,255,255,0.3); color:#fff;">Fresh</span>
+      <span class="chip" style="border-color:rgba(255,255,255,0.3); color:#fff;">Elegant</span>
+      <span class="chip" style="border-color:rgba(255,255,255,0.3); color:#fff;">Bold</span>
+      <span class="chip" style="border-color:rgba(255,255,255,0.3); color:#fff;">Warm</span>
+      <span class="chip" style="border-color:rgba(255,255,255,0.3); color:#fff;">Daily</span>
+      <span class="chip" style="border-color:rgba(255,255,255,0.3); color:#fff;">Office</span>
+      <span class="chip" style="border-color:rgba(255,255,255,0.3); color:#fff;">Date Night</span>
+      <span class="chip" style="border-color:rgba(255,255,255,0.3); color:#fff;">Events</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FRAGRANCE NOTES EDUCATION ===== -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Notes Education</div>
+      <h2>How A Fragrance Unfolds</h2>
+      <p>Every Mahr fragrance is built in three layers, each revealing itself over time.</p>
+    </div>
+    <div class="notes-grid">
+      <div class="note-col reveal">
+        <div class="note-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h4>Top Notes</h4>
+        <p class="sub">First Impression</p>
+        <p style="color:var(--grey); font-size:14px;">The opening burst you smell in the first few minutes — bright, light, and fleeting.</p>
+        <div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Citrus</span><span class="note-tag">Pepper</span></div>
+      </div>
+      <div class="note-col reveal">
+        <div class="note-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.35-9.5-8.8C.8 8.7 2.4 5 6 5c2 0 3.5 1.2 4 2.2C10.5 6.2 12 5 14 5c3.6 0 5.2 3.7 3.5 7.2C19 16.65 12 21 12 21z"/></svg></div>
+        <h4>Middle Notes</h4>
+        <p class="sub">Heart Of The Fragrance</p>
+        <p style="color:var(--grey); font-size:14px;">Emerging once the top notes fade — the character and personality of the scent.</p>
+        <div class="note-tags"><span class="note-tag">Rose</span><span class="note-tag">Jasmine</span><span class="note-tag">Spices</span></div>
+      </div>
+      <div class="note-col reveal">
+        <div class="note-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8 6 5 10 5 14a7 7 0 0014 0c0-4-3-8-7-12z"/></svg></div>
+        <h4>Base Notes</h4>
+        <p class="sub">The Lasting Memory</p>
+        <p style="color:var(--grey); font-size:14px;">The foundation that lingers for hours — deep, warm, and unmistakably Mahr.</p>
+        <div class="note-tags"><span class="note-tag">Oud</span><span class="note-tag">Amber</span><span class="note-tag">Musk</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY CHOOSE MAHR ===== -->
+<section style="background:var(--ivory)">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Why Choose Mahr</div>
+      <h2>Crafted With Intention</h2>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar reveal">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5z"/></svg></div>
+        <h4>Premium Quality</h4>
+        <p>Imported oils blended in small batches for depth and longevity.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5V6a2 2 0 012-2h12a2 2 0 012 2v14M4 19.5A2.5 2.5 0 016.5 17H20M4 19.5A2.5 2.5 0 006.5 22H20v-5"/></svg></div>
+        <h4>Expert Knowledge</h4>
+        <p>Every fragrance built around a documented notes and story architecture.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h4>Long Lasting</h4>
+        <p>6 to 8+ hour performance profiles, tested and rated per fragrance.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.5 8.5 0 11-8.5-8.5A8.5 8.5 0 0121 11.5z"/><path d="M8 12l2.5 2.5L16 9"/></svg></div>
+        <h4>Customer Support</h4>
+        <p>Real help finding your scent, over WhatsApp or email — no bots.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIFESTYLE BRAND SECTION ===== -->
+<section class="lifestyle-section" style="padding:0;">
+  <div class="lifestyle-grid">
+    <div class="lifestyle-tile" style="background:linear-gradient(160deg,#0F2A3D,#1a3b52);"><span>Office</span></div>
+    <div class="lifestyle-tile" style="background:linear-gradient(160deg,#3E2F1E,#5c452c);"><span>Evening Events</span></div>
+    <div class="lifestyle-tile" style="background:linear-gradient(160deg,#C98E82,#b97668);"><span>Date Night</span></div>
+    <div class="lifestyle-tile" style="background:linear-gradient(160deg,#16342B,#234a3b);"><span>Travel</span></div>
+  </div>
+  <div class="container text-center" style="padding:56px 40px 0;">
+    <p class="reveal" style="font-family:var(--font-heading); font-size:24px; color:var(--navy); max-width:520px; margin:0 auto;">A fragrance for every version of you.</p>
+  </div>
+</section>
+
+<!-- ===== CUSTOMER EXPERIENCES ===== -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Customer Experiences</div>
+      <h2>From Our First Testers</h2>
+      <p>Real first-impressions from our creator and tester community — no fake reviews, ever.</p>
+    </div>
+    <div class="review-grid">
+      <div class="review-card reveal">
+        <div class="rating"><span class="stars">★★★★★</span></div>
+        <p>"MAHR NOIR genuinely surprised me — the dry-down reminded me of fragrances triple the price."</p>
+        <div class="review-card__author"><div class="review-card__avatar">R</div> Rhea, Content Creator</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="rating"><span class="stars">★★★★★</span></div>
+        <p>"OUD ROYAL lasted through an entire wedding function. Compliments all evening."</p>
+        <div class="review-card__author"><div class="review-card__avatar">A</div> Arjun, Tester Panel</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="rating"><span class="stars">★★★★☆</span></div>
+        <p>"Rose Noir is my new go-to for date nights. Elegant without being overpowering."</p>
+        <div class="review-card__author"><div class="review-card__avatar">S</div> Simran, Fragrance Enthusiast</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GIFT SECTION ===== -->
+<section class="gift-section">
+  <div class="container gift-grid">
+    <div class="gift-visual reveal" id="gift-visual"></div>
+    <div class="reveal">
+      <div class="eyebrow">Gifting</div>
+      <h2>A Gift They'll Remember</h2>
+      <p style="color:var(--grey); margin-top:16px; max-width:440px;">Curated bundles and premium packaging for birthdays, weddings, festivals and anniversaries — because a great fragrance is a gift that lingers.</p>
+      <a href="shop.html?collection=gifts" class="btn btn-primary mt-l" style="margin-top:28px;">Shop Gift Collection</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="eyebrow eyebrow--light reveal">Stay Connected</div>
+    <h2 class="reveal">Join The Mahr Circle</h2>
+    <p style="color:rgba(255,255,255,0.6); margin-top:14px;" class="reveal">Discover new fragrances, stories, and exclusive launches.</p>
+    <form class="newsletter-form reveal" onsubmit="event.preventDefault(); MAHR.showToast('Welcome to the Mahr Circle'); this.reset();">
+      <input type="email" placeholder="Email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/products.js"></script>
+<script src="js/app.js"></script>
+<script>
+  MAHR.initLayout('home');
+
+  // Shop by collection
+  const collectionsForGrid = [
+    { key: "for-him", title: "For Him", sub: "Masculine · Elegant · Bold", colorway: "him" },
+    { key: "for-her", title: "For Her", sub: "Feminine · Graceful · Luxurious", colorway: "her" },
+    { key: "unisex", title: "Unisex Signature", sub: "Modern · Minimal · Timeless", colorway: "unisex" },
+    { key: "arabic-luxury", title: "Arabic Luxury", sub: "Powerful · Rich · Royal", colorway: "arabic" },
+  ];
+  document.getElementById("collection-grid").innerHTML = collectionsForGrid.map(c => `
+    <a href="shop.html?collection=${c.key}" class="collection-card reveal">
+      <div class="collection-card__bg" style="background:linear-gradient(160deg, ${MAHR.COLORWAYS[c.colorway].bottle}, ${MAHR.COLORWAYS[c.colorway].label});"></div>
+      <div class="collection-card__label">
+        <div class="eyebrow">${c.sub}</div>
+        <h3>${c.title}</h3>
+      </div>
+    </a>
+  `).join("");
+  MAHR.initReveal();
+
+  // Featured fragrances (bestsellers)
+  const featured = MAHR_PRODUCTS.filter(p => p.isBestseller).slice(0, 4);
+  document.getElementById("featured-grid").innerHTML = featured.map(MAHR.productCardHTML).join("");
+  MAHR.initReveal();
+
+  // Gift visual bottles
+  const giftPicks = ["mahr-oud-royal", "mahr-rose-noir"];
+  document.getElementById("gift-visual").innerHTML = giftPicks.map(id => {
+    const p = MAHR.getProduct(id);
+    return MAHR.bottleSVG(p.colorway, p.name);
+  }).join("");
+</script>
+</body>
+</html>

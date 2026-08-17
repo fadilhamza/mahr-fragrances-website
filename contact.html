@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — Mahr Fragrances</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/components.css">
+<style>
+  .contact-grid { display:grid; grid-template-columns: 1fr 1fr; gap:60px; }
+  @media (max-width: 800px){ .contact-grid{ grid-template-columns:1fr; } }
+  .form-field { margin-bottom: 20px; }
+  .form-field label { display:block; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--grey); margin-bottom:8px; }
+  .form-field input, .form-field textarea { width:100%; border:1px solid var(--border); border-radius:var(--radius); padding:14px; font-family:inherit; font-size:14px; }
+  .contact-info-item { display:flex; gap:14px; margin-bottom:26px; }
+  .contact-info-item svg { width:20px; height:20px; color:var(--gold); flex-shrink:0; }
+</style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<section style="background:var(--navy); color:#fff; text-align:center; padding:70px 0;">
+  <div class="container"><div class="eyebrow eyebrow--light">Get In Touch</div><h1 style="color:#fff;">Contact Us</h1></div>
+</section>
+
+<section>
+  <div class="container contact-grid">
+    <div>
+      <h3>Send a message</h3>
+      <form style="margin-top:24px;" onsubmit="event.preventDefault(); MAHR.showToast('Message sent — we will reply within 24 hours'); this.reset();">
+        <div class="form-field"><label>Name</label><input type="text" required></div>
+        <div class="form-field"><label>Email</label><input type="email" required></div>
+        <div class="form-field"><label>Message</label><textarea rows="5" required></textarea></div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+    <div>
+      <h3>Reach us directly</h3>
+      <div style="margin-top:24px;">
+        <div class="contact-info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M4 4l8 9 8-9"/></svg>
+          <div><strong>Email</strong><p style="color:var(--grey); font-size:14px;">hello@mahrfragrances.com</p></div>
+        </div>
+        <div class="contact-info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2 18 18 0 01-8-3 18 18 0 01-6-6 18 18 0 01-3-8 2 2 0 012-2h4l2 5-2.5 2.5a12 12 0 006 6L16 17l5 2z"/></svg>
+          <div><strong>WhatsApp</strong><p style="color:var(--grey); font-size:14px;">+91 98XXX XXXXX</p></div>
+        </div>
+        <div class="contact-info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <div><strong>Support Hours</strong><p style="color:var(--grey); font-size:14px;">Mon–Sat, 10am – 7pm IST</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="js/products.js"></script>
+<script src="js/app.js"></script>
+<script>MAHR.initLayout('');</script>
+</body>
+</html>

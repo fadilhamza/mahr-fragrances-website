@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — Mahr Fragrances</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<section style="background:var(--navy); color:#fff; text-align:center; padding:70px 0;">
+  <div class="container"><div class="eyebrow eyebrow--light">Support</div><h1 style="color:#fff;">Frequently Asked Questions</h1></div>
+</section>
+
+<section>
+  <div class="container" style="max-width:760px;" id="faq-wrap"></div>
+</section>
+
+<div id="site-footer"></div>
+<script src="js/products.js"></script>
+<script src="js/app.js"></script>
+<script>
+  const faqs = [
+    { q: "What sizes do Mahr fragrances come in?", a: "Every fragrance is available in 30ml, 50ml and 100ml — priced between ₹700 and ₹2499." },
+    { q: "How long does shipping take?", a: "We offer complimentary shipping across India. Orders typically arrive within 4–7 business days." },
+    { q: "Are your fragrances 'inspired by' designer scents?", a: "Our fragrances are created around the character of iconic scent profiles, using our own original blends — not clones or duplicates." },
+    { q: "Can I return a fragrance if I don't like the scent?", a: "Unopened products can be returned within 7 days of delivery. See our Shipping & Returns page for full details." },
+    { q: "Do you offer gift wrapping?", a: "Yes — our Gift Collection includes premium packaging options and message cards at checkout." },
+    { q: "How do I know which fragrance is right for me?", a: "Try our Fragrance Finder for a personalised recommendation based on your mood, occasion and preferred intensity." }
+  ];
+  document.getElementById("faq-wrap").innerHTML = faqs.map(f => `
+    <div class="faq-item" onclick="this.classList.toggle('open')" style="cursor:pointer;">
+      <div class="faq-q">${f.q}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a">${f.a}</div>
+    </div>`).join("");
+  MAHR.initLayout('');
+</script>
+</body>
+</html>
